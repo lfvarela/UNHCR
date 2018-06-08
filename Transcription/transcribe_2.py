@@ -14,6 +14,7 @@ GCS_PATH = 'gs://cs50-audio-flac/Audio_flac_luis'
 NUM_WORKERS = 8
 
 def transcribe_file(gcs_uri):
+    print('INPUT', gcs_uri)
     try:
         client = speech.SpeechClient()
         audio = speech.types.RecognitionAudio(uri=gcs_uri)
@@ -81,11 +82,14 @@ def main():
         else:
             audio_files_no_repeat.append(os.path.join(GCS_PATH, f))
 
+    print('HERE', audio_files_no_repeat)
+
     pool = multiprocessing.Pool(processes=NUM_WORKERS)
     failures = sum(tqdm.tqdm(pool.imap_unordered(transcribe_file, audio_files_no_repeat), total=len(audio_files_no_repeat)))
     print('Done transcribing.')
     print('There were {} failures'.format(failures))
-
+    pool.close()
+    pool.terminate()
 
 if __name__ == '__main__':
     create_folders()
