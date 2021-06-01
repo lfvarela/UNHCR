@@ -30,4 +30,4 @@ six==1.11.0
 smart-open==1.5.7
 stop-words==2015.2.23.1
 tqdm==4.23.3
-urllib3==1.22
+urllib3==1.26.5
