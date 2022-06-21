@@ -16,7 +16,7 @@ idna==2.6
 jmespath==0.9.3
 mutagen==1.40.0
 nltk==3.2.5
-numpy==1.14.2
+numpy==1.22.0
 protobuf==3.5.2.post1
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
